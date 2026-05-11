@@ -1,10 +1,5 @@
 # Zomato Analytics Pipeline
 
-## Architecture
-# Zomato Analytics Pipeline
-
-## Architecture
-# Zomato Analytics Pipeline
 
 ## Architecture
 <img width="756" height="274" alt="image" src="https://github.com/user-attachments/assets/c8570e0e-0065-4775-8117-f824aaad9fd7" />
