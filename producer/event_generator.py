@@ -63,11 +63,13 @@ class EventGenerator:
         base = self._base_event("order_delivered", user_id=user_id)
         return {**base, **delivered}
 
-    def rating_given(self, order_id: str, user_id: str) -> dict:
+    def rating_given(self, order_id: str, user_id: str, restaurant_id: str) -> dict:
         rating = {
             "order_id": order_id,
             "user_id": user_id,
             "rating": random.randint(1, 5),
+            "restaurant_id" :restaurant_id
+            
         }
         base = self._base_event("rating_given", user_id=user_id)
         return {**base, **rating}
@@ -77,11 +79,12 @@ class EventGenerator:
         curr_user = order_event["user_id"]
         curr_order_id = order_event["order_id"]
         curr_amount = order_event["price"]
+        curr_restaurant_id = order_event["restaurant_id"]
 
         payment_event = self.payment_done(curr_order_id, curr_amount, curr_user)
         driver_event = self.driver_assigned(curr_order_id, curr_user)
         deliver_event = self.order_delivered(
             curr_order_id, driver_event["driver_id"], curr_user
         )
-        rating_event = self.rating_given(curr_order_id, curr_user)
+        rating_event = self.rating_given(curr_order_id, curr_user,curr_restaurant_id)
         return [order_event, payment_event, driver_event, deliver_event, rating_event]
